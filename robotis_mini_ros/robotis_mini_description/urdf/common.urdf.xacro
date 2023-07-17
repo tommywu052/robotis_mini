@@ -4,9 +4,9 @@
    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <property name="M_PI" value="3.1415926535897931" />
-  <property name="STL_SCALE" value="0.001 0.001 0.001" />
-  <property name="INERTIA_SCALE" value="${1.2645021e-6 * 1e-6}" />
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:property name="STL_SCALE" value="0.001 0.001 0.001" />
+  <xacro:property name="INERTIA_SCALE" value="${1.2645021e-6 * 1e-6}" />
     <!--
         I = m * r^2
       The inertia tensor computed by MeshLab assumes the mass m is equal 
@@ -18,42 +18,42 @@
       Additionally, distance in MeshLab are in millimeters, so to convert
       r^2 to square meters, we multiply by 0.001^2 = 1e-6
     -->
-  <property name="MASS_DMFB01" value="0.026" />
-  <property name="MASS_DMBB02" value="0.021" />
-  <property name="MASS_DMFB03" value="0.005" />
-  <property name="MASS_DMFB04" value="0.007" />
-  <property name="MASS_DMFB05" value="0.011" />
-  <property name="MASS_DMFB06" value="0.016" />
-  <property name="MASS_DMFB07" value="0.009" />
-  <property name="MASS_DMFF01" value="0.017" />
-  <property name="MASS_SPU5"   value="0.001" />
-  <property name="MASS_SPD3B3" value="0.001" />
-  <property name="MASS_SPD3B5" value="0.001" />
-  <property name="MASS_SPD3B7" value="0.001" />
-  <property name="MASS_SPD4B5" value="0.001" />
-  <property name="MASS_SPD7V4" value="0.001" />
-  <property name="MASS_SPL2B2" value="0.001" />
-  <property name="MASS_SPO5"   value="0.001" />
-  <property name="MASS_LB040"  value="0.056" />
-  <property name="MASS_XL320"  value="0.020" />
+  <xacro:property name="MASS_DMFB01" value="0.026" />
+  <xacro:property name="MASS_DMBB02" value="0.021" />
+  <xacro:property name="MASS_DMFB03" value="0.005" />
+  <xacro:property name="MASS_DMFB04" value="0.007" />
+  <xacro:property name="MASS_DMFB05" value="0.011" />
+  <xacro:property name="MASS_DMFB06" value="0.016" />
+  <xacro:property name="MASS_DMFB07" value="0.009" />
+  <xacro:property name="MASS_DMFF01" value="0.017" />
+  <xacro:property name="MASS_SPU5"   value="0.001" />
+  <xacro:property name="MASS_SPD3B3" value="0.001" />
+  <xacro:property name="MASS_SPD3B5" value="0.001" />
+  <xacro:property name="MASS_SPD3B7" value="0.001" />
+  <xacro:property name="MASS_SPD4B5" value="0.001" />
+  <xacro:property name="MASS_SPD7V4" value="0.001" />
+  <xacro:property name="MASS_SPL2B2" value="0.001" />
+  <xacro:property name="MASS_SPO5"   value="0.001" />
+  <xacro:property name="MASS_LB040"  value="0.056" />
+  <xacro:property name="MASS_XL320"  value="0.020" />
   <!--
-  <property name="MESHVOLUME_DMFB01" value="19027.634766" />
-  <property name="MESHVOLUME_DMBB02" value="17309.392578" />
-  <property name="MESHVOLUME_DMFB03" value="4172.618164" />
-  <property name="MESHVOLUME_DMFB04" value="5622.555664" />
-  <property name="MESHVOLUME_DMFB05" value="8814.262695" />
-  <property name="MESHVOLUME_DMFB06" value="13174.791992" />
-  <property name="MESHVOLUME_DMFB07" value="6234.946777" />
-  <property name="MESHVOLUME_DMFF01" value="14216.210938" />
-  <property name="MESHVOLUME_SPU5"   value="690.421204" />
-  <property name="MESHVOLUME_SPD3B3" value="508.287537" />
-  <property name="MESHVOLUME_SPD3B5" value="862.646484" />
-  <property name="MESHVOLUME_SPD3B7" value="1217.040894" />
-  <property name="MESHVOLUME_SPD4B5" value="1157.969116" />
-  <property name="MESHVOLUME_SPD7V4" value="1055.941406" />
-  <property name="MESHVOLUME_SPL2B2" value="591.031128" />
-  <property name="MESHVOLUME_SPO5"   value="511.205475" />
-  <property name="MESHVOLUME_XL320"  value="16403.394531" />
+  <xacro:property name="MESHVOLUME_DMFB01" value="19027.634766" />
+  <xacro:property name="MESHVOLUME_DMBB02" value="17309.392578" />
+  <xacro:property name="MESHVOLUME_DMFB03" value="4172.618164" />
+  <xacro:property name="MESHVOLUME_DMFB04" value="5622.555664" />
+  <xacro:property name="MESHVOLUME_DMFB05" value="8814.262695" />
+  <xacro:property name="MESHVOLUME_DMFB06" value="13174.791992" />
+  <xacro:property name="MESHVOLUME_DMFB07" value="6234.946777" />
+  <xacro:property name="MESHVOLUME_DMFF01" value="14216.210938" />
+  <xacro:property name="MESHVOLUME_SPU5"   value="690.421204" />
+  <xacro:property name="MESHVOLUME_SPD3B3" value="508.287537" />
+  <xacro:property name="MESHVOLUME_SPD3B5" value="862.646484" />
+  <xacro:property name="MESHVOLUME_SPD3B7" value="1217.040894" />
+  <xacro:property name="MESHVOLUME_SPD4B5" value="1157.969116" />
+  <xacro:property name="MESHVOLUME_SPD7V4" value="1055.941406" />
+  <xacro:property name="MESHVOLUME_SPL2B2" value="591.031128" />
+  <xacro:property name="MESHVOLUME_SPO5"   value="511.205475" />
+  <xacro:property name="MESHVOLUME_XL320"  value="16403.394531" />
   -->
 
   <xacro:macro name="friction_properties" params="link_name">

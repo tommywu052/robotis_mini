@@ -4,10 +4,10 @@
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <property name="M_PI" value="3.1415926535897931" />
-  <property name="XL320_MAX_TORQUE" value="0.39" />
-  <property name="XL320_MAX_VELOCITY" value="${114 * 2*M_PI / 60}" />
-  <property name="XL320_DAMPING" value="0.7" />
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:property name="XL320_MAX_TORQUE" value="0.39" />
+  <xacro:property name="XL320_MAX_VELOCITY" value="${114 * 2*M_PI / 60}" />
+  <xacro:property name="XL320_DAMPING" value="0.7" />
 
   <xacro:macro name="robotis_mini_transmission" params="name">
     <transmission name="${name}_tran">
@@ -31,7 +31,7 @@
     <xacro:robotis_mini_xl320 name="${name}_servo" />
     <joint name="${name}_joint" type="revolute">
       <axis xyz="0 0 ${-reflect}" />
-      <limit lower="${-M_PI/2.0}" upper="${M_PI/2.0}" effort="${XL320_MAX_TORQUE}" velocity="${XL320_MAX_VELOCITY}" />
+      <limit lower="${-M_PI/2.0}" upper="${M_PI/2.0}" effort="0.39" velocity="${XL320_MAX_VELOCITY}" />
       <origin xyz="0 0 0" rpy="0 0 ${initial_rotation}" />
       <parent link="${name}_servo_link"/>
       <child link="${name}_link"/>
@@ -62,7 +62,7 @@
     </link>
     <joint name="${name}_joint" type="revolute">
       <axis xyz="0 0 ${-reflect}" />
-      <limit lower="${-M_PI/2.0}" upper="${M_PI/2.0}" effort="${XL320_MAX_TORQUE}" velocity="${XL320_MAX_VELOCITY}" />
+      <limit lower="${-M_PI/2.0}" upper="${M_PI/2.0}" effort="0.39" velocity="${XL320_MAX_VELOCITY}" />
       <origin xyz="0 0 0" rpy="0 0 ${initial_rotation}" />
       <parent link="${name}_axis_link"/>
       <child link="${name}_link"/>

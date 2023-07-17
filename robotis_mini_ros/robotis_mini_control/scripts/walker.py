@@ -12,6 +12,7 @@ import std_srvs.srv
 import sys
 
 
+
 class SinusoidFunction:
     """
     SinusoidFunction for single joints CPG style
@@ -64,8 +65,8 @@ class WholeBodyWalkerFunction:
     def __init__(self, walking_params):
         self.parameters={}
         
-        print walking_params
-        for pn, pp in walking_params.iteritems():
+        print(walking_params)
+        for pn, pp in walking_params.items():
             self.parameters[pn + '_amplitude']=pp[0]
             self.parameters[pn + '_amplitude_offset']=pp[1]
             self.parameters[pn + '_phase_offset']=pp[2]
@@ -187,8 +188,8 @@ class WholeBodyWalkerFunction:
         Display the CPG functions used
         """
         for j in self.pfn.keys():
-            print j,"p",self.pfn[j],"a",self.afn[j]        
-        print self.pfn["l_knee_joint"].amplitude_offset
+            print(j,"p",self.pfn[j],"a",self.afn[j]        )
+        print(self.pfn["l_knee_joint"].amplitude_offset)
 
     def apply_velocity(self, angles, velocity, phase, x):
         """ Modify on the walk-on-spot joint angles to apply the velocity vector"""
@@ -279,10 +280,10 @@ class Walker:
 
         self.initial_wq = self.wb_walkerfunc.get(True, 0, [0,0,0])  #First joint configuration to start the walking motion
 
-        print "__init__:initial_wq"
+        print("__init__:initial_wq")
         j_names=self.initial_wq.keys()
         for jn in j_names:
-            print jn + str(":") + str(self.initial_wq[jn])
+            print(jn + str(":") + str(self.initial_wq[jn]))
         
         self._th_walk=None  #Walking thread
         
@@ -312,7 +313,7 @@ class Walker:
         """
         Processes a new set of parameters
         """
-        print "Walker new set of parameters received"
+        print("Walker new set of parameters received")
         self._cycle_period = msg.data[0]
         self.walking_params['foot'] = [msg.data[1],msg.data[2],msg.data[3]]
         self.walking_params['ankle'] = [msg.data[4],msg.data[5],msg.data[6]]
@@ -324,16 +325,16 @@ class Walker:
 
         self.initial_wq = self.wb_walkerfunc.get(True, 0, [0,0,0])  #First joint configuration to start the walking motion
 
-        print "initial_wq"
+        print("initial_wq")
         j_names=self.initial_wq.keys()
         for jn in j_names:
-            print jn + str(":") + str(self.initial_wq[jn])
+            print(jn + str(":") + str(self.initial_wq[jn]))
             
     def _cb_cmd_restart(self,msg):
         """
         Processes cmd_restart and to start a new trial
         """
-        print "Walker restart command received"
+        print("Walker restart command received")
         
         #Stop the running thread
         while self.displacing or self.walking or self._th_walk:
@@ -359,14 +360,14 @@ class Walker:
                self.unpause_simulation_srv()
                rospy.loginfo( "Unpaused gazebo")
                time.sleep(1)
-            except rospy.ServiceException, e:
-               print "Service call failed: %s"%e
+            except rospy.ServiceException as e:
+               print("Service call failed: %s"%e)
         
     def _cb_cmd_vel(self,msg):
         """
         Processes cmd_vel and update walker speed
         """
-        print "Walker velocity command received: ",msg
+        print("Walker velocity command received: ",msg)
         vx=msg.linear.x
         vy=msg.linear.y
         vt=msg.angular.z
@@ -377,7 +378,7 @@ class Walker:
         """
         Processes cmd_stop
         """
-        print "Walker stop command received: "
+        print("Walker stop command received: ")
         self.stop()
         
     def goto_initial_wq(self):
@@ -387,12 +388,12 @@ class Walker:
         rospy.loginfo("Going to initial walking configuration")
         while self.get_qdist_to_initial_wq()>0.1:
             rospy.loginfo("Commanding to go to initial walking configuration")
-            print "Initial configuration"
-            print self.initial_wq
+            print("Initial configuration")
+            print(self.initial_wq)
             self.robotis_mini_ci.set_qd_interpolated(self.initial_wq, 2)
             rospy.sleep(2)   
         rospy.loginfo("Initial walking configuration reached")
-        print "Distance",self.get_qdist_to_initial_wq() 
+        print("Distance",self.get_qdist_to_initial_wq() )
         
     def start(self):
         if not self.displacing:
@@ -423,7 +424,7 @@ class Walker:
         
         # Global walk loop
         n=50
-        print "Thread rate", 1.0/(self._cycle_period/(2.0*n))
+        print("Thread rate", 1.0/(self._cycle_period/(2.0*n)))
         r=rospy.Rate(1.0/(self._cycle_period/(2.0*n)))
         p=True
         i=0

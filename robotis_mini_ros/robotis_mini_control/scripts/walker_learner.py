@@ -104,7 +104,7 @@ class WalkerLearner:
                           np.random.uniform(self.phase_limits[0], self.phase_limits[1])
                           ]
 
-            print "Sending params ", new_params
+            print("Sending params ", new_params)
 
             # Send the new params
             new_params_msg = Float64MultiArray()
@@ -141,10 +141,10 @@ class WalkerLearner:
         pickle.dump(self.final_state, open(pathstr + '/data/finalstate_' + timestr + '.pkl', "wb"))
         pickle.dump(self.reward, open(pathstr + '/data/reward_' + timestr + '.pkl', "wb"))
 
-        print "Final rewards"
+        print("Final rewards")
         ep_ctr = 1
         for key, value in self.reward.iteritems():
-            print "Episode " + str(ep_ctr) + " reward " + str(value)
+            print("Episode " + str(ep_ctr) + " reward " + str(value))
             ep_ctr += 1
 
 
