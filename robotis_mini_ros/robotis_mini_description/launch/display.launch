@@ -3,10 +3,10 @@
   <arg name="rvizconfig" default="$(find robotis_mini_description)/rviz/robotis_mini.rviz" />
  
   <!-- define the robot_description parameter as the output of the xacro deparser on the urdf model of the robot-->
-  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
 
   <!-- launch the robot state publisher: publishes the tf frames of each link of the robot based on the published joint states (performs forward kinematics)-->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" >
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
     <remap from="joint_states" to="/robotis_mini/joint_states" />
   </node>
     
